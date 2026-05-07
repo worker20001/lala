@@ -1,0 +1,7 @@
+# Step 1: Compile library
+g++ -shared -fPIC -std=c++14 -pthread -o soul.so soul.cpp
+
+# Step 2: Add to git
+git add soul.so
+git commit -m "Add precompiled soul.so"
+git push
