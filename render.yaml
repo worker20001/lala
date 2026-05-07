@@ -1,0 +1,13 @@
+services:
+  - type: web
+    name: cpp-attack-api
+    runtime: python
+    buildCommand: |
+      pip install -r requirements.txt
+      g++ -std=c++14 -pthread -o soul soul.cpp
+      chmod +x soul
+      g++ -shared -fPIC -std=c++14 -pthread -o soul.so soul.cpp
+    startCommand: waitress-serve --port=$PORT api:app
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.11
